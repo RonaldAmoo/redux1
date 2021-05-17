@@ -68,7 +68,7 @@ class UsersForm extends Component {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Submit
+            Add User
           </Button>
         </Form>
       </div>
