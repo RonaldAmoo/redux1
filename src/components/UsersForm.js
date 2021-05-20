@@ -67,7 +67,7 @@ class UsersForm extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="danger" type="submit">
             Add User
           </Button>
         </Form>
