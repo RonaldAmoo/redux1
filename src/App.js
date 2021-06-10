@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 import { addUser, deleteUser } from "./Store/usersAction";
 import UsersForm from "./components/UsersForm";
