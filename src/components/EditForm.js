@@ -8,8 +8,9 @@ class EditForm extends Component {
     super(props);
     this.state = {
       name: props.user.name,
-      email: props.user.email,
-      gen: props.user.gen,
+      date: props.user.date,
+      amount: props.user.amount,
+      category: props.user.category,
     };
     this.id = props.match.params.id;
   }
@@ -22,56 +23,73 @@ class EditForm extends Component {
     e.preventDefault();
     const updatedInfo = {
       name: this.state.name,
-      email: this.state.email,
-      gen: this.state.gen,
+      date: this.state.date,
+      amount: this.state.amount,
+      category: this.state.category,
     };
     this.props.editUser(this.id, updatedInfo);
     this.setState({
       name: "",
-      email: "",
-      gen: "",
+      date: "",
+      amount: "",
+      category: "",
     });
     this.props.history.push("/");
   };
   render() {
     return (
-      <div className="users-inform">
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="etext"
-              placeholder="Enter name"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Gen</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="Gen"
-              name="gen"
-              value={this.state.gen}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Button variant="danger" type="submit">
-            Edit User
-          </Button>
-        </Form>
-      </div>
+      <Form onSubmit={this.handleSubmit} className="users-inform">
+        <Form.Group controlId="formBasic">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Item"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicDate">
+          <Form.Label>Date</Form.Label>
+          <Form.Control
+            type="date"
+            placeholder="Date"
+            name="date"
+            value={this.state.date}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formBasicAmount">
+          <Form.Label>Amount</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter Amount"
+            name="amount"
+            value={this.state.amount}
+            onChange={this.handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="formGridState">
+          <Form.Label>Category</Form.Label>
+          <Form.Control as="select" defaultValue="Choose...">
+            <option>Choose...</option>
+            <option>Food & Drink</option>
+            <option>Accomodation</option>
+            <option>Transportation</option>
+            <option>Housing & Rent</option>
+            <option>Miscellaneous</option>
+            name="category" value={this.state.category}
+            onChange={this.handleChange}
+          </Form.Control>
+        </Form.Group>
+
+        <Button variant="success" type="submit">
+          Edit
+        </Button>
+      </Form>
     );
   }
 }

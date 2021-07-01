@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
+import { getAllUsers } from "./Store/usersAction";
 import { addUser, deleteUser } from "./Store/usersAction";
 import UsersForm from "./components/UsersForm";
 import UserInfo from "./components/UserInfo";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getAllUsers();
+  }
+
   addNewUser = (newUsers) => {
     this.props.addUser(newUsers);
   };
@@ -24,8 +29,9 @@ class App extends Component {
                 key={item.id}
                 id={item.id}
                 name={item.name}
-                email={item.email}
-                gen={item.gen}
+                date={item.date}
+                amount={item.amount}
+                category={item.category}
                 removeUser={this.deleteUser}
               />
             );
@@ -42,6 +48,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   addUser: addUser,
   deleteUser: deleteUser,
+  getAllUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

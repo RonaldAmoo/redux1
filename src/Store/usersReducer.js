@@ -3,26 +3,33 @@ const initialState = {
   users: [
     {
       id: "1",
-      name: "Ronaldo Amoo",
-      email: "roro@gmail.com",
-      gen: 34,
+      name: "Tomato",
+      date: "12/07/2020",
+      amount: 34,
+      category: "food & drinks",
     },
     {
       id: "2",
-      name: "Bright Annan",
-      email: "brightosis@gmail.com",
-      gen: 21,
+      name: "Rent",
+      date: "04/30/1997",
+      amount: 300,
+      category: "Accomodation",
     },
   ],
 };
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD_ALL_USERS":
+      let users = action.payload;
+      return { users: users };
+
     case "ADD_USER":
       const newUser = {
         id: uuidv4(),
         name: action.payload.name,
-        email: action.payload.email,
-        gen: action.payload.gen,
+        date: action.payload.date,
+        amount: action.payload.amount,
+        category: action.payload.category,
       };
       return { ...state, users: [...state.users, newUser] };
 
